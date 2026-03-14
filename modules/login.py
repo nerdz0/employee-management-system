@@ -1,21 +1,39 @@
-def login():
+import pymysql 
+
+def login_as_administrator(passwd):
+    # root_password = input("\n:: Enter Password for Administrator >>> ")
+        
+    try:
+        conn_object = pymysql.Connection(
+            host = 'localhost',
+            username = 'root',
+            password = passwd,
+            database = employees
+        )
+
+        if conn_object.open:
+
+            print("\nLogin Successful!\nWelcome Administrator\n")
+
+    except pymysql.err as error:
+        print(f"Error :: {error}")
+        print("\n --- Login Failed ! --- ")
+
+
+def main():
     print("==================================")
     print("    Employee Management System    ")
     print("==================================")
-    print("[1]    Login as Administrator")
-    print("[2]    Login as Manager")
-    print("[3]    Login as Emplyee")
-    print("[4]    Exit")
-    choice = input("\n:: Select option >>> ")
+    print("\n[1]    Login as Administrator")
+    print("[2]    Login as Employee")
+    print("[3]    Exit")
+    choice = input("\n:: Select an option >>> ")
     
     if choice == '1':
-        print("\n--- Logged in as Administrator ---\n")
-    
-    elif choice == '2':
-        print("\n--- Logged is as Manager ---\n")
+        login_as_administrator()
 
-    elif choice == '3':
+    elif choice == '2':
         print("\n--- Logged in as Employee ---\n")
 
-    elif choice == '4':
+    elif choice == '3':
         print("\n--- Thank you ---\n")

@@ -1,5 +1,4 @@
-# employee-management-system
-Employee-Management-System
+# Employee-Management-System
 ---
 Author :: nerdz0
 <br>
