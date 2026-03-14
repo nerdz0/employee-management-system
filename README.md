@@ -1,4 +1,4 @@
-# python-employees-management-system
+# python-employee-management-system
 Employee-Management-System
 ---
 - 
