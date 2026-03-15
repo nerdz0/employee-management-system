@@ -1,10 +1,19 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from typing import List
 from pydantic import BaseModel
 
 app = FastAPI()
 
-# This is a 'Schema' - big companies use these to ensure data is correct
+# --- Big Company Security: CORS ---
+# This allows your Next.js frontend to safely talk to your Python backend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], # In production, you'd replace "*" with your actual domain
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 class Employee(BaseModel):
     id: int
     name: str
@@ -12,7 +21,6 @@ class Employee(BaseModel):
     department: str
     status: str
 
-# Mock database - later we can connect this to PostgreSQL
 employees_db = [
     {"id": 1, "name": "Bhaskar Roy", "role": "System Architect", "department": "Engineering", "status": "Active"},
     {"id": 2, "name": "Jane Doe", "role": "Product Manager", "department": "Product", "status": "On Leave"},
